@@ -247,10 +247,6 @@ JoinForm.prototype.validateForm = function () {
             // Only the last alert is read, so limit alerts to the first error
             // so it matches with focus sent to the first message
             if(error_count == 1){
-                const errorField = $s(fieldName + "_error");
-                if (errorField.getAttribute("role") == "alert") {
-                	$s(fieldName + "_error").setAttribute("role", "");
-                }
             	$s(fieldName + "_error").setAttribute("role", "alert");
             }
             $s(fieldName + "_error").firstChild.nodeValue = error.message;
