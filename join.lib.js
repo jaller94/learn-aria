@@ -248,7 +248,7 @@ JoinForm.prototype.validateForm = function () {
             // so it matches with focus sent to the first message
             if(error_count == 1){
                 const errorField = $s(fieldName + "_error");
-                if (errorField.setAttribute("role") == "alert") {
+                if (errorField.getAttribute("role") == "alert") {
                 	$s(fieldName + "_error").setAttribute("role", "");
                 }
             	$s(fieldName + "_error").setAttribute("role", "alert");
