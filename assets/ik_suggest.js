@@ -177,13 +177,17 @@
 
 		if (str.length >= len) {
 			for (var i = 0, l = arr.length; i < l ; i++) {
-				if (r.length > limit ) {
+				if (r.length > limit) {
 					break;
 				}
 				if ( regex.test(arr[i]) ) {
 					r.push(arr[i].replace(regex, '<span>$1</span>'));
 				}
 			}
+		}
+
+		if (r.length > 1) { // add instructions to hidden live area
+			this.notify.text('Suggestions are available for this field. Use up and down arrows to select a suggestion and enter key to use it.');
 		}
 
 		return r;
