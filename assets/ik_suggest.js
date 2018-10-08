@@ -1,14 +1,13 @@
 ;(function ( $, window, document, undefined ) {
 
-var pluginName = "ik_suggest",
+	var pluginName = "ik_suggest",
 	defaults = {
-        'instructions': "As you start typing the application might suggest similar search terms. Use up and down arrow keys to select a suggested search string.",
+		'instructions': "As you start typing the application might suggest similar search terms. Use up and down arrow keys to select a suggested search string.",
 		'minLength': 2,
 		'maxResults': 10,
-		'source': []
-
+		'source': [],
 	};
-	
+
 	/**
 	 * @constructs Plugin
 	 * @param {Object} element - Current DOM element from selected collection.
@@ -61,11 +60,9 @@ var pluginName = "ik_suggest",
 	 * @param {object} event.data.plugin - Reference to plugin.
 	 */
 	Plugin.prototype.onFocus = function (event) {
-
 		var plugin;
-
 		plugin = event.data.plugin;
-
+		plugin.notify.text(plugin.options.instructions);
 	};
 
 	/**
@@ -76,30 +73,19 @@ var pluginName = "ik_suggest",
 	 * @param {object} event.data.plugin - Reference to plugin.
 	 */
 	Plugin.prototype.onKeyDown = function (event) {
-
 		var plugin, selected;
-
 		plugin = event.data.plugin;
-
 		switch (event.keyCode) {
-
 			case ik_utils.keys.tab:
 			case ik_utils.keys.esc:
-
 				plugin.list.empty().hide(); // empty list and hide suggestion box
-
 				break;
-
 			case ik_utils.keys.enter:
-
 				selected = plugin.list.find('.selected');
 				plugin.element.val( selected.text() ); // set text field value to the selected option
 				plugin.list.empty().hide(); // empty list and hide suggestion box
-
 				break;
-
 		}
-
 	};
 
 	/**
