@@ -106,6 +106,25 @@
 		plugin = event.data.plugin;
 		$me = $(event.currentTarget);
 
+		switch (event.keyCode) {
+    		case ik_utils.keys.down: // select next suggestion from list
+                selected = plugin.list.find('.selected');
+                if(selected.length) {
+                    msg = selected.removeClass('selected').next().addClass('selected').text();
+                } else {
+                    msg = plugin.list.find('li:first').addClass('selected').text();
+                }
+                plugin.notify.text(msg); // add suggestion text to live region to be read by screen reader
+                break;
+            case ik_utils.keys.up: // select previous suggestion from list
+                selected = plugin.list.find('.selected');
+                if(selected.length) {
+                    msg = selected.removeClass('selected').prev().addClass('selected').text();
+                }
+                plugin.notify.text(msg);  // add suggestion text to live region to be read by screen reader
+                break;
+
+            default: // get suggestions based on user input
 				plugin.list.empty();
 
 				suggestions = plugin.getSuggestions(plugin.options.source, $me.val());
@@ -121,6 +140,8 @@
 					plugin.list.hide();
 				}
 
+				break;
+		}
 	};
 
 	/**
