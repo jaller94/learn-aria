@@ -120,6 +120,8 @@
                 selected = plugin.list.find('.selected');
                 if(selected.length) {
                     msg = selected.removeClass('selected').prev().addClass('selected').text();
+                } else {
+                    msg = plugin.list.find('li:last').addClass('selected').text();
                 }
                 plugin.notify.text(msg);  // add suggestion text to live region to be read by screen reader
                 break;
