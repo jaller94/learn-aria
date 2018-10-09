@@ -125,6 +125,24 @@
 		
 		this.updateDisplay();
 	};
+	
+	/**
+	 * Handles keydown event on progressbar element.
+	 *
+	 * @param {Object} event - Keyboard event.
+	 * @param {object} event.data - Event data.
+	 * @param {object} event.data.plugin - Reference to plugin.
+	 */
+	Plugin.prototype.onKeyDown = function(event) {
+		switch(event.keyCode) {
+			case ik_utils.keys.space:
+			case ik_utils.keys.enter:
+			event.preventDefault();
+			event.stopPropagation();
+			event.data.plugin.notify();
+			break;
+		}
+	};
 
 	/** Updates visual display. */
 	Plugin.prototype.updateDisplay = function() {
