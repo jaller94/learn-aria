@@ -40,12 +40,16 @@
 				'aria-describedby': id + '_instructions', // add aria-describedby attribute
 			})
 			.addClass('ik_progressbar')
-      ;
+			.on('keydown.ik', {'plugin': this}, this.onKeyDown);
 		
 		this.fill = $('<div/>')
 			.addClass('ik_fill');
 			
 		this.notification = $('<div/>') // add div element to be used to notify about the status of download
+			.attr({
+				'aria-live': 'assertive', // set notification priority to high
+				'aria-atomic': 'additions' // notify only about newly added text
+			})
 			.addClass('ik_readersonly')
 			.appendTo(this.element);
 
