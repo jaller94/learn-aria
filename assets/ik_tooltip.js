@@ -82,6 +82,9 @@
 					if (!$(event.currentTarget).is(':focus') ) { // hide tooltip if current element is not focused
 						
 						$tooltip
+							.attr({
+								'aria-hidden': 'true'
+							})
 							.removeClass('visible mouseover');					
 					}
 										
