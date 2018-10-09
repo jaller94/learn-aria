@@ -78,7 +78,7 @@
 		
 		var value;
 		
-		value = Number( this.element.data('value') ); // inaccessible
+		value = Number( this.element.attr('aria-valuenow') ); // accessible
 		
 		return parseInt( value );
 		
