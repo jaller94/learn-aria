@@ -111,23 +111,21 @@
 		if (n >= this.options.max) {
 			val = this.options.max;
 			$el.attr({
-					'tabindex': -1
-				});
+				'tabindex': -1,
+			});
 			this.notification.text('Loading complete');
 		} else {
 			val = n;
 		}
 		
 		this.element
-			.data({ // inaccessible
-				'value': parseInt(val) 
-			}) 
-      ;
+			.attr({ // accessible
+				'aria-valuenow': val,
+			});
 		
 		this.updateDisplay();
-		
 	};
-	
+
 	/** Updates visual display. */
 	Plugin.prototype.updateDisplay = function() {
 		
