@@ -68,6 +68,9 @@
 					}
 					
 					$tooltip // position and show tooltip
+						.attr({
+							'aria-hidden': 'false'
+						})
 						.css({
 							'top': y, 
 							'left': x
