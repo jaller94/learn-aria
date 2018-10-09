@@ -1,5 +1,5 @@
 ;(function ( $, window, document, undefined ) {
- 
+
 	var pluginName = 'ik_tooltip',
 		defaults = {
 			'position': 'top'
@@ -38,13 +38,19 @@
 				.addClass('ik_tooltip')
 				.attr({
 					'id': id,
+					'role': 'tooltip', // assign tooltip role
+					'aria-hidden': 'true', // hide it from screen reader to prevent it from been read twice
+					'aria-live': 'polite' // make it live region
 				});
 			
 			$elem
+				.attr({
+					'tabindex': 0 // add tab order
+				})
 				.css('position', 'relative')
 				.removeAttr('title') // remove title to prevent it from being read
 				.after($tooltip)
-				.on('mouseover', function(event) {
+				.on('mouseover focus', function(event) {
 					
 					var y, x;
 					
