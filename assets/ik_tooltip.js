@@ -78,17 +78,33 @@
 						.addClass('visible');
 				})
 				.on('mouseout', function(event) {
-					
 					if (!$(event.currentTarget).is(':focus') ) { // hide tooltip if current element is not focused
 						
 						$tooltip
 							.attr({
 								'aria-hidden': 'true'
 							})
-							.removeClass('visible mouseover');					
+							.removeClass('visible mouseover');
 					}
-										
 				})
+				.on('blur', function(event) {
+					if (!$tooltip.hasClass('mouseover') ) { // hide tooltip if mouse is not over the current element               
+						$tooltip
+							.attr({
+								'aria-hidden': 'true'
+							})
+							.removeClass('visible');
+					}
+				})
+				.on('keyup', function(event) {
+					if(event.keyCode == ik_utils.keys.esc) { // hide when escape key is pressed
+						$tooltip
+							.attr({
+								'aria-hidden': 'true'
+							})
+							.removeClass('visible');
+					}
+				});
 		}
 	};
 	
