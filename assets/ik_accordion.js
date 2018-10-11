@@ -31,10 +31,11 @@
 		id = 'acc' + $('.ik_accordion').length; // create unique id
 		$elem = this.element;
 		plugin = this;
-		
+
 		$elem.attr({
 			'id': id,
-			'role': 'region' // add the accordion to the landmarked regions
+			'role': 'region', // add the accordion to the landmarked regions
+			'aria-multiselectable': !this.options.autoCollapse, // define if more than one panel can be expanded
 		}).addClass('ik_accordion');
 			
 		this.headers = $elem.children('dt').each(function(i, el) {
