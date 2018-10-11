@@ -1,5 +1,5 @@
 ;(function ( $, window, document, undefined ) {
-	
+
 	var pluginName = 'ik_slider',
 		defaults = {
 			'instructions': 'Use the right and left arrow keys to increase or decrease the slider value.',
@@ -73,6 +73,7 @@
 				.addClass('ik_knob')
 				.on('mousedown', {'plugin': plugin}, plugin.onMouseDown)
 				.on('mousemove', {'plugin': plugin}, plugin.onMouseMove)
+				.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
 				.on('mouseup', {'plugin': plugin}, plugin.onMouseUp)
 				.on('mouseleave', function(){ setTimeout(plugin.onMouseUp, 100, { 'data': {'plugin': plugin} }) });
 				
@@ -85,6 +86,48 @@
 		
 		}
 
+	};
+	
+	/**
+	 * Keyboard event handler.
+	 *
+	 * @param {object} event - Keyboard event.
+	 * @param {object} event.data - Event data.
+	 * @param {object} event.data.plugin - Reference to plugin.
+	 */
+	Plugin.prototype.onKeDown = function (event) {
+	   
+	    var $elem, plugin, value;
+	   
+	    $elem = $(this);
+	    plugin = event.data.plugin;
+	   
+	    switch (event.keyCode) {
+	       
+	        case ik_utils.keys.right:
+	           
+	            value = parseInt($elem.attr('aria-valuenow')) + plugin.options.step;
+	            value = value < plugin.options.maxValue ? value : plugin.options.maxValue;     
+	            plugin.setValue(value);
+	            break;
+	           
+	        case ik_utils.keys.end:
+	            plugin.setValue(plugin.options.maxValue);
+	            break;
+	       
+	        case ik_utils.keys.left:
+	           
+	            value = parseInt($elem.attr('aria-valuenow')) - plugin.options.step;
+	            value = value > plugin.options.minValue ? value : plugin.options.minValue
+	            plugin.setValue(value);
+	            break;
+	       
+	        case ik_utils.keys.home:
+	            plugin.setValue(plugin.options.minValue);
+	            break;
+	           
+	    }
+	   
 	};
 	
 	/** 
