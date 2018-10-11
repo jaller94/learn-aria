@@ -2,6 +2,7 @@
 	
 	var pluginName = 'ik_slider',
 		defaults = {
+			'instructions': 'Use the right and left arrow keys to increase or decrease the slider value.',
 			'minValue': 0,
 			'maxValue': 100,
 			'nowValue': 0,
