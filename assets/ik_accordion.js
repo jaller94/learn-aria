@@ -1,11 +1,11 @@
 ;(function ( $, window, document, undefined ) {
- 	
+	
 	var pluginName = 'ik_accordion',
 		defaults = { // set default parameters
 			autoCollapse: false,
 			animationSpeed: 200
 		};
-	 
+
 	/**
 	 * @constructs Plugin
 	 * @param {Object} element - Current DOM element from selected collection.
@@ -33,20 +33,22 @@
 		plugin = this;
 		
 		$elem.attr({
-			'id': id
+			'id': id,
+			'role': 'region' // add the accordion to the landmarked regions
 		}).addClass('ik_accordion');
 			
 		this.headers = $elem.children('dt').each(function(i, el) {
 			var $me, $btn;
 			
 			$me = $(el);
-			$btn = $('<div/>').attr({
-          'id': id + '_btn_' + i
-        })
-        .addClass('button')
-        .html($me.html())
-        .on('click', {'plugin': plugin}, plugin.togglePanel);
-        
+			$btn = $('<div/>')
+				.attr({
+					'id': id + '_btn_' + i
+				})
+				.addClass('button')
+				.html($me.html())
+				.on('click', {'plugin': plugin}, plugin.togglePanel);
+
 			$me.empty().append($btn); // wrap content of each header in an element with role button
 		});
 		
