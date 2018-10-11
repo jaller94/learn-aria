@@ -48,7 +48,8 @@
 		
 			plugin.textfield
 				.attr({
-					'readonly': ''
+					'readonly': '',
+					'tabindex': -1
 				})
 				.addClass('ik_value')
 				.wrap('<div></div>'); // wrap initial element in a div
@@ -147,6 +148,10 @@
 		
 		this.textfield.val(n);
 		this.options.nowValue = n;
+		this.knob
+			.attr({
+				'aria-valuenow': n
+			}); 
 		this.updateDisplay(n); // update display
 	};
 	
