@@ -62,7 +62,13 @@
 			
 			plugin.knob = $('<div/>')
 				.attr({
-					'id': id
+					'id': id,
+					'tabindex': 0, // add this element to tab order
+                    'role': 'slider', // assign role slider
+                    'aria-valuemin': plugin.options.minValue, // set slider minimum value
+                    'aria-valuemax': plugin.options.maxValue, // set slider maximum value
+                    'aria-valuenow': plugin.options.minValue, // set slider current value
+                    'aria-describedby': id + '_instructions', // add description */
 				})
 				.addClass('ik_knob')
 				.on('mousedown', {'plugin': plugin}, plugin.onMouseDown)
@@ -78,7 +84,7 @@
 			this.setValue(plugin.options.minValue); // update current value
 		
 		}
-					
+
 	};
 	
 	/** 
