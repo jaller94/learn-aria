@@ -106,7 +106,11 @@
 			.blur();
 		
 		$($tabs[ind]) // select specified tab
-			.addClass('selected');
+			.addClass('selected')
+			.attr({
+				'aria-selected': true,
+				tabindex: 0
+			});;
 		
 		if (event.type) $($tabs[ind]).focus(); // move focus to current tab if reached by mouse or keyboard
 		
