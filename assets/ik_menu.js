@@ -233,7 +233,17 @@
 		$submenu = $elem.children('ul');
 		
 		if ($submenu.length) {
-			$elem.addClass('expanded');
+			$elem
+				.addClass('expanded')
+				.removeClass('expanded')
+				.attr({
+					'aria-expanded': true,
+					'tabindex': -1
+				});
+			$submenu
+				.attr({
+					'aria-hidden': false
+				});
 		}
 	};
 	
@@ -250,8 +260,13 @@
 		$submenu = $elem.children('ul');
 		
 		if ($submenu.length) {
-			$elem.removeClass('expanded');
-
+			$elem
+				.removeClass('expanded')
+				.attr({
+					'aria-expanded': false
+				});
+			$submenu.attr({'aria-hidden': true});
+			$submenu.children('li').attr({'tabindex': -1});
 		}
 	}
 	
