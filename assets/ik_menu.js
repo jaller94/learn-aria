@@ -45,7 +45,10 @@
 			
 		$elem.find('ul:eq(0)')
 			.attr({
-				'id': id
+				'id': id,
+				'role': 'menubar', // assign menubar role to the topmost ul element
+		        'tabindex': 0,
+		        'aria-labelledby': id + '_instructions'
 			});
 		
 		plugin.menuitems = $elem.find('li') // setup menuitems
