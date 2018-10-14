@@ -39,7 +39,8 @@
 			.text(plugin.options.instructions) // get instruction text from plugin options
 			.addClass('ik_readersonly') // hide element from visual display
 			.attr({
-				'id': id + '_instructions', 
+				'id': id + '_instructions',
+				'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
 			})
 			.appendTo($elem);
 		
@@ -54,7 +55,9 @@
 		$elem 
 			.find('ul:first')  // set topmost ul element as a tree container
 			.attr({
-				'id': id
+				'id': id,
+				'role': 'tree', // assign tree role
+				'aria-labelledby': id + '_title' // label with tree title
 			});
 		
 		$elem // set all li elements as tree folders and items
@@ -67,15 +70,20 @@
 				$me = $(el);
 				
 				$me.attr({
-					'id': id + '_menuitem_' + i
-					});
+					'id': id + '_menuitem_' + i,
+					'role': 'treeitem', // assign treeitem role
+					'tabindex': -1, // remove from tab order
+					'aria-level': $me.parents('ul').length, // add tree level
+					'aria-setsize': $me.siblings().length + 1, // define number of treeitems on the current level
+					'aria-posinset': $me.parent().children().index($me) + 1 // define position of the current element on the current level 
+				});
 				
 				$($me.contents()[0]).wrap('<span></span>'); // wrap text element of each treitem with span element
 				
 				if ($me.children('ul').length) {  // if the current treeitem has submenu
 					
 					if (plugin.options.expandAll) { // expand or collapse all tree levels based on configuration
-              // don't do anything
+						// don't do anything
 					} else {
 						$me.addClass('collapsed');
 					}
