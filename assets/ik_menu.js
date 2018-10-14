@@ -109,11 +109,116 @@
 		plugin.menuitems // setup event handlers
 			.on('mouseenter', plugin.showSubmenu)
 			.on('mouseleave', plugin.hideSubmenu)
-			.on('click', {'plugin': plugin}, plugin.activateMenuItem);
+			.on('click', {'plugin': plugin}, plugin.activateMenuItem)
+			.on("keydown", {'plugin': plugin}, plugin.onKeyDown);
 			
 		$(window).on('resize', function(){ plugin.collapseAll(plugin); } ); // collapse all submenues when window is resized
 		
 	};
+	
+	/**
+	 * Selects specified tab.
+	 *
+	 * @param {Object} event - Keyboard event.
+	 * @param {object} event.data - Event data.
+	 * @param {object} event.data.plugin - Reference to plugin.
+	 * @param {object} event.data.index - Index of a tab to be selected.
+	 */
+	 
+	 
+	Plugin.prototype.onKeyDown = function (event) {
+	
+		var plugin, $elem, $current, $next, $parent, $submenu, $selected;
+	
+		plugin = event.data.plugin;
+		$elem = $(plugin.element);
+		$current = $(plugin.element).find(':focus');
+		$submenu = $current.children('ul');
+		$parentmenu = $($current.parent('ul'));
+		$parentitem = $parentmenu.parent('li');
+		
+		switch (event.keyCode) {
+		
+			case ik_utils.keys.right:
+			
+				event.preventDefault();
+			
+				if ($current.parents('ul').length == 1) {
+					$current.attr({'tabindex': -1}).next('li').attr({'tabindex': 0}).focus();
+				}
+			
+				break;
+		
+			case ik_utils.keys.left:
+			
+				event.preventDefault();
+			
+				if ($current.parents('ul').length == 1) {
+					$current.attr({'tabindex': -1}).prev('li').attr({'tabindex': 0}).focus();
+				}
+			
+				break;
+			
+			case ik_utils.keys.up:
+			
+				event.preventDefault();
+				event.stopPropagation();
+			
+				if ($current.parents('ul').length > 1) {
+					$current.attr({'tabindex': -1}).prev('li').attr({'tabindex': 0}).focus();
+				}
+			
+				break;
+		
+			case ik_utils.keys.down:
+			
+				event.preventDefault();
+				event.stopPropagation();
+			
+				if($current.parents('ul').length > 1) {
+					$current.attr({'tabindex': -1}).next('li').attr({'tabindex': 0}).focus();
+				}
+			
+				break;
+			
+			case ik_utils.keys.space:
+			
+				event.preventDefault();
+				event.stopPropagation();
+			
+				if($submenu.length) {
+					plugin.showSubmenu(event);
+					$submenu.children('li:eq(0)').attr({'tabindex': 0}).focus();
+				}
+				break;
+		
+			case ik_utils.keys.esc:
+			
+				event.stopPropagation();
+			
+				if ($parentitem.hasClass('expandable')) {
+				
+					$parentitem.removeClass('expanded').attr({
+						'tabindex': 0,
+						'aria-expanded': false
+					}).focus();
+					plugin.collapseAll(plugin, $parentitem);
+				}
+				break;
+		
+			case ik_utils.keys.enter:
+			
+				plugin.activateMenuItem(event);
+			
+				break;
+		
+			case ik_utils.keys.tab:
+			
+				plugin.collapseAll(plugin);
+			
+				break;
+		}
+	}
 	
 	/** 
 	 * Shows submenu.
