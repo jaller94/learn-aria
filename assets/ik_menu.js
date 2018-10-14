@@ -280,6 +280,9 @@
 		
 		$elem = $elem || plugin.element;
 		
+		$elem.find('[aria-hidden=false]').attr({'aria-hidden': true});
+		$elem.find('.expanded').removeClass('expanded').attr({'aria-expanded': false});
+		$elem.find('li').attr({'tabindex': -1}).eq(0).attr({'tabindex': 0});
 	};
 	
 	/** 
