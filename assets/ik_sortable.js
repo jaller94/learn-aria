@@ -23,9 +23,21 @@ var pluginName = "ik_sortable",
 		plugin = this;
 		id = 'sortable_' + $('.ik_sortable').length;
 		$elem = this.element.attr({
-			'id': id
+			'id': id,
+            'role': 'list',
+            'tabindex': 0,
+            'aria-labelledby': id + '_instructions'
 		})
 		.wrap('<div class="ik_sortable"></div>').before(plugin.temp);
+        
+        $('<div/>') // add div element to be used with aria-describedby attribute of the menu
+            .text(plugin.options.instructions) // get instruction text from plugin options
+            .addClass('ik_readersonly') // hide element from visual display
+            .attr({
+                'id': id + '_instructions',
+                'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
+            })
+            .appendTo($elem);
 			
 		total = $elem.children('li').length;
 			
@@ -42,8 +54,7 @@ var pluginName = "ik_sortable",
 		.on('dragenter', {'plugin': plugin}, plugin.onDragEnter)
 		.on('dragover', {'plugin': plugin}, plugin.onDragOver)
 		.on('dragleave', {'plugin': plugin}, plugin.onDragLeave);
-		
-		
+
 	};
 	
 	// dragged item
