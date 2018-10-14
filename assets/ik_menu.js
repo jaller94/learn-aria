@@ -63,7 +63,13 @@
 				
 				var $me, $link;
 				
-				$me = $(this);
+				$me = $(this)
+					.attr({
+						'role': 'menuitem', // assign menuitem rols
+						'tabindex': -1,  // remove from tab order
+						'aria-label': $link.text() // label with link text
+					});
+				
 				$link = $me.find('>a')
 					.attr({ // disable links
 						'tabindex': -1,
