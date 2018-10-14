@@ -1,7 +1,8 @@
 ;(function ( $, window, document, undefined ) {
- 
+
 	var pluginName = 'ik_treemenu',
 		defaults = {
+			'instructions': 'Use up or down arrows to move through menu items, and Enter or Spacebar to toggle sub-menus open and closed.',
 			'menuTitle': 'Breakfast Menu',
 			'expandAll': true
 		};
