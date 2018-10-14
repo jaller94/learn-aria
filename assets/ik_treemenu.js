@@ -98,11 +98,11 @@
 						.attr({
 							'aria-label': $me.children('span:first').text()
 						})
-					    .children('span')
-					    .addClass('folder')
-					    .attr({
-					       'role': 'presentation'
-					    });
+						.children('span')
+						.addClass('folder')
+						.attr({
+						   'role': 'presentation'
+						});
 
 				} else {
 					$me.attr({'aria-selected': false}); 
@@ -113,9 +113,9 @@
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown);
 			
 			$elem.find('li:first') // make the first treeitem focusable
-    			.attr({
+				.attr({
 					'tabindex': 0
-    			});
+				});
 		};
 	
 	/** 
@@ -128,22 +128,22 @@
 		var $elem = plugin.element;
 		
 		$elem.find('[aria-selected=true]') // remove previous selection
-            .attr({
-                'tabindex': -1,
-                'aria-selected': false
-            });
-       
-        $elem.find('.focused') // remove highlight form previously selected treeitem
-            .removeClass('focused');
-       
-        $elem.find('li').attr({ // remove all treeitems from tab order
-            'tabindex': -1
-        })
-       
-        $item.attr({ // select specified treeitem
-            'tabindex': 0, // add selected treeitem to tab order
-            'aria-selected': true
-        });
+			.attr({
+				'tabindex': -1,
+				'aria-selected': false
+			});
+	   
+		$elem.find('.focused') // remove highlight form previously selected treeitem
+			.removeClass('focused');
+	   
+		$elem.find('li').attr({ // remove all treeitems from tab order
+			'tabindex': -1
+		})
+	   
+		$item.attr({ // select specified treeitem
+			'tabindex': 0, // add selected treeitem to tab order
+			'aria-selected': true
+		});
 		
 		if ($item.children('ul').length) { // highlight selected treeitem
 			$item.children('span').addClass('focused');
@@ -164,15 +164,19 @@
 		if($item.children('ul').length) { // check if the treeitem contains submenu
 			
 			if ($item.hasClass('collapsed')) {  // expand if collapsed
-      
-				$item.removeClass('collapsed');
-        
+				$item
+					.removeClass('collapsed')
+					.attr({
+                    	'aria-expanded': true
+            		});
 			} else { 							// otherwise collapse
-      
-				$item.addClass('collapsed');
-        
+				$item
+					.addClass('collapsed')
+					.attr({
+                    	'aria-expanded': false
+            		});
 			}
-      
+	  
 		}
 	}
 	
