@@ -109,9 +109,14 @@
 				}
 			
 			})
-			.on('click', {'plugin': plugin}, plugin.onClick);
-		
-	};
+			.on('click', {'plugin': plugin}, plugin.onClick)
+			.on('keydown', {'plugin': plugin}, plugin.onKeyDown);
+			
+			$elem.find('li:first') // make the first treeitem focusable
+    			.attr({
+					'tabindex': 0
+    			});
+		};
 	
 	/** 
 	 * Selects treeitem.
@@ -122,8 +127,23 @@
 	Plugin.prototype.selectItem = function($item, plugin) {
 		var $elem = plugin.element;
 		
-		$elem.find('.focused') // remove highlight form previousely selected treeitem
-			.removeClass('focused');
+		$elem.find('[aria-selected=true]') // remove previous selection
+            .attr({
+                'tabindex': -1,
+                'aria-selected': false
+            });
+       
+        $elem.find('.focused') // remove highlight form previously selected treeitem
+            .removeClass('focused');
+       
+        $elem.find('li').attr({ // remove all treeitems from tab order
+            'tabindex': -1
+        })
+       
+        $item.attr({ // select specified treeitem
+            'tabindex': 0, // add selected treeitem to tab order
+            'aria-selected': true
+        });
 		
 		if ($item.children('ul').length) { // highlight selected treeitem
 			$item.children('span').addClass('focused');
