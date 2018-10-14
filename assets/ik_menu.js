@@ -2,7 +2,7 @@
 
 	var pluginName = 'ik_menu',
 		defaults = {
-			'instructions': 'Use arrow keys to navigate between menuitems, spacebar to expand submenus, escape key to close submenus, enter to activate menuitems.'
+			'instructions': 'Use arrow keys to navigate between menu items, spacebar to expand sub-menus, escape key to close sub-menus, enter to activate menu items.'
 		};
 	 
 	/**
