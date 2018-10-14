@@ -92,13 +92,17 @@
 		
 		if (!plugin.selected.length) {
 			
-			plugin.menuitems
-				.eq(0);
+			plugin.menuitems.eq(0)
+				.attr({
+					'tabindex': 0
+				});
 			
 		} else {
 			
-			plugin.selected
-				.parentsUntil('nav', 'li');
+			plugin.selected.parentsUntil('nav', 'li')
+				.attr({
+					'tabindex': 0
+				});
 			
 		}
 		
