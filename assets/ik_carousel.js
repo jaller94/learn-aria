@@ -137,6 +137,9 @@
 		var plugin = event.data.plugin;
 		clearInterval(plugin.timer);
 		plugin.timer = null;
+		if (event.type === 'focusin') {
+			plugin.element.attr({'aria-live': 'polite'});
+		}
 		
 	};
 	
