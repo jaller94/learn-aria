@@ -123,6 +123,10 @@
 		
 		plugin.timer = setInterval(plugin.gotoSlide, plugin.options.animationSpeed, {'data':{'plugin': plugin, 'slide': 'right'}});
 		
+		if (event.type === 'focusout') {
+			plugin.element.removeAttr('aria-live');
+		}
+		
 	};
 	
 	/** 
