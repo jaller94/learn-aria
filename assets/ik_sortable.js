@@ -56,9 +56,63 @@ var pluginName = "ik_sortable",
 		.on('dragend', {'plugin': plugin}, plugin.onDragEnd)
 		.on('dragenter', {'plugin': plugin}, plugin.onDragEnter)
 		.on('dragover', {'plugin': plugin}, plugin.onDragOver)
-		.on('dragleave', {'plugin': plugin}, plugin.onDragLeave);
+		.on('dragleave', {'plugin': plugin}, plugin.onDragLeave)
+        .on('keydown', {'plugin': plugin}, plugin.onKeyDown);
 
 	};
+    
+    /**
+     * Handles kedown event on list items.
+     *
+     * @param {object} event - Keyboard event.
+     * @param {object} event.data - Event data.
+     * @param {object} event.data.plugin - Reference to plugin.
+     */
+    Plugin.prototype.onKeyDown = function (event) {
+ 
+        var plugin, $me, currIndex, nextIndex;
+       
+        plugin = event.data.plugin;
+        $me = $(event.currentTarget);
+        currentIndex = plugin.items.index(event.currentTarget);
+           
+        switch (event.keyCode) {
+           
+            case ik_utils.keys.down:
+               
+                plugin.items.attr({'tabindex': -1});
+               
+                if(currentIndex < plugin.items.length - 1) {
+                    if(event.ctrlKey || event.metaKey) { // move item down
+                        $me.insertAfter( $me.next() );
+                        $me.attr({'tabindex': 0}).focus();
+                        plugin.resetNumbering(plugin);
+                    } else { // move focus to the next item
+                        $me.next().attr({'tabindex': 0}).focus();
+                    }
+                }
+               
+                break;
+           
+            case ik_utils.keys.up:
+               
+                plugin.items.attr({'tabindex': -1});
+               
+                if(currentIndex > 0) {
+                    if(event.ctrlKey || event.metaKey) { // move item up
+                        $me.insertBefore( $me.prev() );
+                        $me.attr({'tabindex': 0}).focus();
+                        plugin.resetNumbering(plugin);
+                    } else { // move focus to the previous item
+                        $me.prev().attr({'tabindex': 0}).focus();
+                    }
+                }
+               
+                break;
+           
+        }
+       
+    };
 	
 	// dragged item
 	

@@ -70,7 +70,7 @@
 	};
 
 	/**
-	 * Handles kedown event on text field.
+	 * Handles key down event on text field.
 	 *
 	 * @param {object} event - Keyboard event.
 	 * @param {object} event.data - Event data.
