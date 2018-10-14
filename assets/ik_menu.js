@@ -31,7 +31,8 @@
 		
 		$elem.addClass('ik_menu')
 			.attr({
-				'id': id
+				'id': id,
+				'aria-hidden': 'true'  // hide element from screen readers to prevent it from being read twice
 			});
 		
 		$('<div/>') // add div element to be used with aria-described attribute of the menu
