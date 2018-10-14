@@ -198,8 +198,10 @@ var pluginName = "ik_sortable",
 		
 		plugin.items.each( function(i, el) {
 			var $me = $(el);
+            $me.attr({
+                'aria-label': $me.text() + ' ' + (i + 1) + ' of ' + plugin.items.length + ' movable'
+            });
 		});
-		
 	}
 
 	$.fn[pluginName] = function ( options ) {
