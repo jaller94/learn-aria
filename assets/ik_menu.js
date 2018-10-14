@@ -84,8 +84,11 @@
 					.addClass('expandable');
 			});
 		
-		plugin.selected = plugin.menuitems // setup selected menuitem
-			.find('.selected');
+		plugin.selected = plugin.menuitems.find('.selected') // setup selected menuitem
+			.attr({
+				'tabindex': 0,
+				'aria-selected': true
+			});
 		
 		if (!plugin.selected.length) {
 			
