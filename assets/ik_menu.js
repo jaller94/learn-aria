@@ -50,6 +50,12 @@
 				'tabindex': 0,
 				'aria-labelledby': id + '_instructions'
 			});
+			
+		$elem.find('li>ul')
+			.attr({
+				'role': 'menu',
+				'aria-hidden': true // hide submenus from screen reader
+			});
 		
 		plugin.menuitems = $elem.find('li') // setup menu items
 			.css({ 'list-style': 'none' })
