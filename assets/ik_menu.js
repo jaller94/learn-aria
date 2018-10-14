@@ -47,11 +47,11 @@
 			.attr({
 				'id': id,
 				'role': 'menubar', // assign menubar role to the topmost ul element
-		        'tabindex': 0,
-		        'aria-labelledby': id + '_instructions'
+				'tabindex': 0,
+				'aria-labelledby': id + '_instructions'
 			});
 		
-		plugin.menuitems = $elem.find('li') // setup menuitems
+		plugin.menuitems = $elem.find('li') // setup menu items
 			.css({ 'list-style': 'none' })
 			.each(function(i, el) {
 				
