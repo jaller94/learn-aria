@@ -37,14 +37,21 @@
 			'role': 'region', // add the accordion to the landmarked regions
 			'aria-multiselectable': !this.options.autoCollapse, // define if more than one panel can be expanded
 		}).addClass('ik_accordion');
-			
+
+		this.headers = $elem.children('dt')
+			.attr({'role': 'heading'}); // set heading role for each accordion header
+
 		this.headers = $elem.children('dt').each(function(i, el) {
 			var $me, $btn;
 			
 			$me = $(el);
 			$btn = $('<div/>')
 				.attr({
-					'id': id + '_btn_' + i
+					'id': id + '_btn_' + i,
+					'role': 'button',
+					'aria-controls': id + '_panel_' + i, // associate button with corresponding panel
+					'aria-expanded': false, // toggle expanded state
+					'tabindex': 0 //add keyboard focus
 				})
 				.addClass('button')
 				.html($me.html())
