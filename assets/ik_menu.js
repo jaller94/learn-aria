@@ -76,7 +76,12 @@
 						'aria-hidden': true
 					});
 				
-				$me.has('ul').addClass('expandable');
+				$me.has('ul')
+					.attr({ // setup submenus
+						'aria-haspopup': true,
+						'aria-expanded': false
+					})
+					.addClass('expandable');
 			});
 		
 		plugin.selected = plugin.menuitems // setup selected menuitem
