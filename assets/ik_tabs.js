@@ -115,9 +115,15 @@
 		if (event.type) $($tabs[ind]).focus(); // move focus to current tab if reached by mouse or keyboard
 		
 		$panels // hide all panels
+			.attr({
+				'aria-hidden': true
+			})
 			.hide(); 
 		
 		$($panels[ind]) // show current panel
+			.attr({
+				'aria-hidden': false
+			})
 			.show(); 
 		
 	}
