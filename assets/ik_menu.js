@@ -64,7 +64,11 @@
 				var $me, $link;
 				
 				$me = $(this);
-				$link = $me.find('>a');
+				$link = $me.find('>a')
+					.attr({ // disable links
+						'tabindex': -1,
+						'aria-hidden': true
+					});
 				
 				$me.has('ul').addClass('expandable');
 			});
