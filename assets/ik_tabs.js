@@ -34,6 +34,9 @@
 		
 		$tabbar = $('<ul/>') // create ul element to hold all tabs
 			.addClass('ik_tabbar cf')
+			.attr({
+				'role': 'tablist' // add tablistr role
+			})
 			.prependTo($elem);
 		
 		plugin.panels = $elem // initialize panels and create tabs
