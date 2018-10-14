@@ -64,7 +64,10 @@
 		this.panels = $elem.children('dd').each(function(i, el) {
 			var $me = $(this), id = $elem.attr('id') + '_panel_' + i;
 			$me.attr({
-				'id': id
+				'id': id,
+				'role': 'region', // add role region to each panel
+				'aria-hidden': true, // mark all panels as hidden
+				'tabindex': 0 // add panels into the tab order
 			});
 		}).hide();
 	};
