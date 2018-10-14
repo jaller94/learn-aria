@@ -46,7 +46,10 @@
 				var $tab, $panel, lbl;
 				
 				$panel = $(el).attr({
-					'id': id + '_panel' + i  // add unique id for a panel					
+					'id': id + '_panel' + i,  // add unique id for a panel
+					'role': 'tabpanel', // add tabpanel role
+					'aria-hidden': true, // initially hide from screen readers
+					'tabindex': 0 // add to tab order
 				})
 				.addClass('ik_tabpanel')
 				.hide();
