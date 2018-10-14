@@ -99,6 +99,10 @@
 		
 		$tabs // deselect all tabs
 			.removeClass('selected')
+			.attr({
+				'aria-selected': false,
+				'tabindex': -1 // remove them from tab order
+			})
 			.blur();
 		
 		$($tabs[ind]) // select specified tab
