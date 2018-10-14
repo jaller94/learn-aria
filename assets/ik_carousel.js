@@ -35,14 +35,20 @@
 		
 		$elem
 			.attr({
-				'id': id
+				'id': id,
+				'role': 'region', // assign region role
+				'tabindex': 0, // add into the tab order
+				'aria-describedby': id + '_instructions' // associate with instructions
 			})
 			.addClass('ik_carousel')
+			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
 			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
 			.on('mouseleave', {'plugin': plugin}, plugin.startTimer)
 		
 		$controls = $('<div/>')
-
+			.attr({
+				'aria-hidden': 'true' // hide controls from screen readers
+			})
 			.addClass('ik_controls')
 			.appendTo($elem);
 				
@@ -68,7 +74,11 @@
 				$me = $(el);
 				$src = $me.find('img').remove().attr('src');
 				
-				$me.css({
+				$me
+					.attr({
+						'aria-hidden': 'true' // hide images from screen readers
+					})
+					.css({
 						'background-image': 'url(' + $src + ')'
 					});	
 				
