@@ -83,20 +83,29 @@
 				if ($me.children('ul').length) {  // if the current treeitem has submenu
 					
 					if (plugin.options.expandAll) { // expand or collapse all tree levels based on configuration
-						// don't do anything
+						$me.attr({
+							'aria-expanded': true
+						})
 					} else {
-						$me.addClass('collapsed');
+						$me
+							.attr({
+								'aria-expanded': false
+							})  
+							.addClass('collapsed');
 					}
 					
 					$me
-						.children('span')
-						.addClass('folder')
-            ;
-					
+						.attr({
+							'aria-label': $me.children('span:first').text()
+						})
+					    .children('span')
+					    .addClass('folder')
+					    .attr({
+					       'role': 'presentation'
+					    });
+
 				} else {
-					
-					//aria-selected goes here
-					
+					$me.attr({'aria-selected': false}); 
 				}
 			
 			})
