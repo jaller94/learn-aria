@@ -45,7 +45,10 @@ var pluginName = "ik_sortable",
 			
 			$(el).attr({
 				'draggable': true,
-				'id': id + '_' + i
+				'id': id + '_' + i,
+                'role': 'listitem',
+                'aria-label': $(el).text() + ' ' + (i + 1) + ' of ' + total + ' movable',
+                'tabindex': i > 0 ? -1 : 0
 			});
 		})
 		.on('dragstart', {'plugin': plugin}, plugin.onDragStart)
