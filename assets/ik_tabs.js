@@ -58,15 +58,16 @@
 
 				$panel.removeAttr('title');
 
-				$tab = $('<li/>').attr({
-					'id': id + '_tab' + i // create unique id for a tab
-					'role': 'tab', // assign tab role
-					'aria-controls': 'panel' + i // define which panel it controls
-				})
-				.text(lbl > '' ? lbl : 'Tab ' + (i + 1))
-				.on('keydown', {'plugin': plugin, 'index': i}, plugin.onKeyDown) // add keyboard event handler
-				.on('click', {'plugin': plugin, 'index': i}, plugin.selectTab) // add mouse event handler
-				.appendTo($tabbar);
+				$tab = $('<li/>')
+					.attr({
+						'id': id + '_tab' + i, // create unique id for a tab
+						'role': 'tab', // assign tab role
+						'aria-controls': 'panel' + i // define which panel it controls
+					})
+					.text(lbl > '' ? lbl : 'Tab ' + (i + 1))
+					.on('keydown', {'plugin': plugin, 'index': i}, plugin.onKeyDown) // add keyboard event handler
+					.on('click', {'plugin': plugin, 'index': i}, plugin.selectTab) // add mouse event handler
+					.appendTo($tabbar);
 			});
 
 		plugin.tabs = $tabbar.find('li');
