@@ -111,24 +111,24 @@
 	 * @param {object} event.data.plugin - Reference to plugin.
 	 */
 	Plugin.prototype.onKeyDown = function (event) {
-       
-    var plugin = event.data.plugin;
-       
-    switch (event.keyCode) {
-           
-        case ik_utils.keys.left:
-            event.data = {'plugin': plugin, 'slide': 'left'};
-            plugin.gotoSlide(event);
-            break;
-        case ik_utils.keys.right:
-            event.data = {'plugin': plugin, 'slide': 'right'};
-            plugin.gotoSlide(event);
-            break;
-        case ik_utils.keys.esc:
-            plugin.element.blur();
-            break;
-        }
-    }
+	   
+	var plugin = event.data.plugin;
+	   
+	switch (event.keyCode) {
+		   
+		case ik_utils.keys.left:
+			event.data = {'plugin': plugin, 'slide': 'left'};
+			plugin.gotoSlide(event);
+			break;
+		case ik_utils.keys.right:
+			event.data = {'plugin': plugin, 'slide': 'right'};
+			plugin.gotoSlide(event);
+			break;
+		case ik_utils.keys.esc:
+			plugin.element.blur();
+			break;
+		}
+	}
 	
 	/** 
 	 * Starts carousel timer. 

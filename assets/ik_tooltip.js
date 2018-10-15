@@ -88,7 +88,7 @@
 					}
 				})
 				.on('blur', function(event) {
-					if (!$tooltip.hasClass('mouseover') ) { // hide tooltip if mouse is not over the current element               
+					if (!$tooltip.hasClass('mouseover') ) { // hide tooltip if mouse is not over the current element			   
 						$tooltip
 							.attr({
 								'aria-hidden': 'true'
