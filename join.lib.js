@@ -258,11 +258,11 @@ JoinForm.prototype.validateForm = function () {
     }
     error_count = 0;
     if(hasErrors === false){
-    	$s("feedback").style.display = "inline-block";
+        $s("feedback").style.display = "inline-block";
         $s("feedback").firstChild.nodeValue = this.success;
         $s("feedback").className = "feedback";
-       // Uncomment the next line to add an ARIA alert to the feedback message
-       $s("feedback").setAttribute("role", "alert");
+        // Uncomment the next line to add an ARIA alert to the feedback message
+        $s("feedback").setAttribute("role", "alert");
     }
     return hasErrors;
 }
