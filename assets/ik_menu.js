@@ -62,18 +62,20 @@
 			.each(function(i, el) {
 
 				var $me, $link;
-
-				$me = $(this)
-					.attr({
-						'role': 'menuitem', // assign menuitem rols
-						'tabindex': -1,  // remove from tab order
-						'aria-label': $link.text() // label with link text
-					});
-
+				
+				$me = $(this);
+				
 				$link = $me.find('>a')
 					.attr({ // disable links
 						'tabindex': -1,
 						'aria-hidden': true
+					});
+
+				$me
+					.attr({
+						'role': 'menuitem', // assign menuitem rols
+						'tabindex': -1,  // remove from tab order
+						'aria-label': $link.text() // label with link text
 					});
 
 				$me.has('ul')
@@ -110,7 +112,7 @@
 			.on('mouseenter', plugin.showSubmenu)
 			.on('mouseleave', plugin.hideSubmenu)
 			.on('click', {'plugin': plugin}, plugin.activateMenuItem)
-			.on("keydown", {'plugin': plugin}, plugin.onKeyDown);
+			.on('keydown', {'plugin': plugin}, plugin.onKeyDown);
 
 		$(window).on('resize', function(){ plugin.collapseAll(plugin); } ); // collapse all submenues when window is resized
 
