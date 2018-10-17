@@ -44,6 +44,8 @@
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
 			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
 			.on('mouseleave', {'plugin': plugin}, plugin.startTimer)
+			.on('focus', {'plugin': plugin}, plugin.stopTimer)
+			.on('blur', {'plugin': plugin}, plugin.startTimer)
 
 		$controls = $('<div/>')
 			.attr({
@@ -150,7 +152,8 @@
 
 		plugin.timer = setInterval(plugin.gotoSlide, plugin.options.animationSpeed, {'data':{'plugin': plugin, 'slide': 'right'}});
 
-		if (event.type === 'focusout') {
+		console.log(event.type);
+		if (event.type === 'blur') {
 			plugin.element.removeAttr('aria-live');
 		}
 
@@ -168,7 +171,9 @@
 		var plugin = event.data.plugin;
 		clearInterval(plugin.timer);
 		plugin.timer = null;
-		if (event.type === 'focusin') {
+
+		console.log(event.type);
+		if (event.type === 'focus') {
 			plugin.element.attr({'aria-live': 'polite'});
 		}
 
