@@ -3,7 +3,7 @@
 var pluginName = "ik_sortable",
 	modifier = navigator.platform.indexOf('Mac') > -1 ? 'Command' : 'Control',
 	defaults = {
-		'instructions': 'Use arrow keys to select a list item,  ' + modifier + ' + arrow keys to move it to a new position.'
+		'instructions': 'Use tab to enter the sortable list, the arrow keys to select a list item,  ' + modifier + ' + arrow keys to move it to a new position.'
 	};
 
 	function Plugin( element, options ) {
