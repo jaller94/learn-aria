@@ -67,7 +67,7 @@
 	};
 
 	/**
-	 * Handles kedown event on progressbar element.
+	 * Handles key down event on progressbar element.
 	 *
 	 * @param {Object} event - Keyboard event.
 	 * @param {object} event.data - Event data.

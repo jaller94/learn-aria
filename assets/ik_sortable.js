@@ -62,7 +62,7 @@ var pluginName = "ik_sortable",
 	};
 
 	/**
-	 * Handles kedown event on list items.
+	 * Handles key down event on list items.
 	 *
 	 * @param {object} event - Keyboard event.
 	 * @param {object} event.data - Event data.
