@@ -33,7 +33,12 @@
 		$elem = plugin.element;
 		id = 'tree' + $('.ik_treemenu').length; // create unique id
 
-		$elem.addClass('ik_treemenu');
+		$elem
+			.addClass('ik_treemenu')
+			.attr({
+				'tabindex': 0,
+				'aria-labelledby': id + '_instructions'
+			});
 
 		$('<div/>') // add div element to be used with aria-labelledby attribute of the menu
 			.text(plugin.options.instructions) // get instruction text from plugin options
@@ -85,7 +90,7 @@
 					if (plugin.options.expandAll) { // expand or collapse all tree levels based on configuration
 						$me.attr({
 							'aria-expanded': true
-						})
+						});
 					} else {
 						$me
 							.attr({
