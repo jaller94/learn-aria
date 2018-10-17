@@ -142,11 +142,19 @@
 				$btn = $hdr.find('.button');
 
 				if($btn[0] != $(event.currentTarget)[0]) {
-					$btn.removeClass('expanded');
-					$hdr.next().slideUp(plugin.options.animationSpeed);
+					$btn
+						.removeClass('expanded')
+						.attr({'aria-expanded': false});
+					$hdr.next()
+						.slideUp(plugin.options.animationSpeed)
+						.attr({'aria-hidden': true});
 				} else {
-					$btn.addClass('expanded');
-					$hdr.next().slideDown(plugin.options.animationSpeed);
+					$btn
+						.addClass('expanded')
+						.attr({'aria-expanded': true});
+					$hdr.next()
+						.slideDown(plugin.options.animationSpeed)
+						.attr({'aria-hidden': false});
 				}
 			});
 
@@ -154,6 +162,8 @@
 
 			isVisible = !!$panel.is(':visible');
 			$panel.slideToggle({ duration: plugin.options.animationSpeed });
+			$me.attr({'aria-expanded': $me.attr('aria-expanded') == 'false'});
+			$panel.attr({'aria-hidden': $me.attr('aria-hidden') == 'false'});
 
 		}
 	};
