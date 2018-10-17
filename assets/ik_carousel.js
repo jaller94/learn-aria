@@ -42,10 +42,8 @@
 			})
 			.addClass('ik_carousel')
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
-			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
-			.on('mouseleave', {'plugin': plugin}, plugin.startTimer)
-			.on('focus', {'plugin': plugin}, plugin.stopTimer)
-			.on('blur', {'plugin': plugin}, plugin.startTimer)
+			.on('focusin mouseenter', {'plugin': plugin}, plugin.stopTimer)
+			.on('focusout mouseleave', {'plugin': plugin}, plugin.startTimer)
 
 		$controls = $('<div/>')
 			.attr({
@@ -152,8 +150,7 @@
 
 		plugin.timer = setInterval(plugin.gotoSlide, plugin.options.animationSpeed, {'data':{'plugin': plugin, 'slide': 'right'}});
 
-		console.log(event.type);
-		if (event.type === 'blur') {
+		if (event.type === 'focusout') {
 			plugin.element.removeAttr('aria-live');
 		}
 
@@ -172,8 +169,7 @@
 		clearInterval(plugin.timer);
 		plugin.timer = null;
 
-		console.log(event.type);
-		if (event.type === 'focus') {
+		if (event.type === 'focusin') {
 			plugin.element.attr({'aria-live': 'polite'});
 		}
 
